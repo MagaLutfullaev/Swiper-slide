@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <style>
+        @font-face {
+            font-family: "EuropeExt";
+            src: url("Fonts/europeext_bold.otf") format("opentype");
+            font-style: normal;
+            font-weight: 700;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #slide {
+            width: 100%;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide-content {
+            max-width: 1480px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+        .swiper {
+            color: #fff;
+            overflow: visible;
+            width: 300px !important;
+            margin-left: 320px;
+            height: 710px;
+            align-items: center;
+        }
+        .swiper-wrapper {
+            display: flex;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: all .2s;
+        }
+        .swiper-slide .slide-img {
+            /* position: absolute; */
+            width: 275px !important;
+            opacity: .8;
+            height: 490px !important;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all .2s;
+            border-radius: 10px;
+        }
+        .swiper-slide .slide-text {
+            text-transform: uppercase;
+            position: absolute;
+            font-family: 'EuropeExt';
+            font-weight: 700;
+        }
+        .slide-descr {
+            display: none;
+        }
+        .swiper-slide .slide-img {
+           display: inline; 
+        }
+        .swiper-slide video {
+            display: none ;
+        }
+        .swiper-slide-active {
+            width: 500px !important;
+        }
+        .swiper-slide-active .slide-img {
+            display: none;
+        }
+        .swiper-slide-active video {
+            display: inline;
+            width: 400px !important;
+            height: 710px !important;
+            border-radius: 15px;
+        }
+        .swiper-slide-active .slide-text {
+            display: none;
+        }
+        .swiper-slide-active .slide-descr {
+            display: inline;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 40px;
+            background-color: rgba(0, 0, 0, 0.65);
+            padding: 20px;
+        }
+        .swiper-slide-active .slide-descr p {
+            text-transform: uppercase;
+            font-size: 23px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            font-family: 'EuropeExt';
+            font-weight: 700;
+        }
+        .swiper-slide-active .slide-descr p span {
+            text-transform: capitalize;
+            font-size: 17px;
+            font-family: 'Overpass', sans-serif;
+            font-weight: 400;
+        }
+        .swiper-slide-active .slide-descr .progress-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #aaaaaa;
+            border-radius: 1px;
+            opacity: .7;
+        }
+        .swiper-slide-active .slide-descr .progress-bar .progress-passed {
+            width: 20%;
+            transition: .1s;
+            height: 2px;
+            background-color: #575757;
+        }
+        
+        .swiper-button-prev {
+            left: 0px;
+        }
+        .swiper-button-next {
+            right: -200px;
+        }
+        .swiper-button-prev, .swiper-button-next {
+            color: #fff;
+            background-color: #333;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 14px;
+        }
+        @media (max-width: 1550px) {
+            .slide-content {
+                margin-left: 0;
+            }
+            .swiper-slide .slide-img {
+                width: 210px !important;
+                opacity: .8;
+                height: 400px !important;
+            }
+        }
+        @media (max-width: 1450px) {
+            .slide-content {
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 1160px;
+            }
+            .swiper {
+                width: 220px !important;
+                height: 620px !important;
+                margin-left: 240px;
+            }
+            .swiper-slide-active {
+                width: 430px !important;
+            }
+            .swiper-slide-active video {
+                width: 350px !important;
+                height: 620px !important;
+            }
+            .swiper-button-next {
+                right: -210px;
+            }
+        }
+        @media (max-width: 1250px) {
+            .slide-content {
+                max-width: 910px;
+            }
+        }
+        @media (max-width: 768px) {
+            .slide-content {
+                max-width: 100%;
+                padding: 0 20px;
+                margin: 0 auto;
+            }
+            .swiper {
+                margin: 0 auto;
+                width: 85% !important;
+            }
+            .swiper-wrapper {
+                align-items: center;
+            }
+            .swiper-slide-active {
+                margin: 0 auto !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            .swiper-slide-active .slide-descr {
+                margin: 0 auto;
+                width: 350px !important;
+            }
+            .swiper-slide-active .slide-descr p {
+                font-size: 16px;
+            }
+            .swiper-slide-active .slide-descr p span {
+                font-size: 12px;
+            }
+            .swiper-button-next {
+                right: -5px;
+            }
+        }
+        @media (max-width: 520px) {
+            .slide-content {
+                padding: 0;
+            }
+            .swiper-slide-active {
+                height: 490px !important;
+            }
+            .swiper-slide-active video {
+                width: 280px !important;
+                height: max-content !important;
+            }
+            .swiper-slide-active .slide-descr {
+                margin: 0 auto;
+                width: 280px !important;
+            }
+        }
+    </style>
+    <title>Slide</title>
+</head>
+<body>
+    <section id="slide">
+        <div class="slide-content">
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide">
+                    <video src="video.mp4" playsinline type="video/mp4" muted autoplay poster="first.jpg"></video>
+                    <div class="slide-img" style="background-image: url('first.jpg');"></div>
+                    <p class="slide-text">G-Drive</p>
+                    <div class="slide-descr">
+                        <p>G-Drive <span>Promo Video</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-passed"></div>
+                        </div>
+                    </div>
+                  </div>
+                <div class="swiper-slide">
+                    <video src="video1.mp4" playsinline type="video/mp4" muted autoplay poster="second.jpg"></video>
+                    <div class="slide-img" style="background-image: url('second.jpg');"></div>
+                    <p class="slide-text">Зенит X Nike</p>
+                    <div class="slide-descr">
+                        <p>Зенит X Nike <span>Promo Video</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-passed"></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <video src="video2.mp4" playsinline type="video/mp4" muted autoplay poster="third.jpg"></video>
+                    <div class="slide-img" style="background-image: url('third.jpg');"></div>
+                    <p class="slide-text">Winline</p>
+                    <div class="slide-descr">
+                        <p>Winline <span>Promo Video</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-passed"></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <video src="video.mp4" playsinline type="video/mp4" muted autoplay poster="fourth.jpg"></video>
+                    <div class="slide-img" style="background-image: url('fourth.jpg');"></div>
+                    <p class="slide-text">Mekong</p>
+                    <div class="slide-descr">
+                        <p>Mekong <span>Promo Video</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-passed"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="swiper.js"></script>
+    <script>
+        var tick;
+        var per = 0;
+        var delay = 5000;
+        const swiper = new Swiper('.swiper', {
+            speed: 300,
+            spaceBetween: 20,
+            autoplay: {
+                delay: delay,
+                disableOnInteraction: false,
+            },
+            loopAdditionalSlides: 3,
+            watchSlidesProgress: true,
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                init() {
+                    var status = true
+                    if (true) {
+
+                    }
+                    document.body.addEventListener('keydown', (e) => {
+                        if (e.code === 'Space') {
+                            if(status) {
+                                this.autoplay.stop();
+                                clearInterval(tick);
+                                status = false
+                            } else {
+                                status = true
+                                this.autoplay.start();
+                                tick = setInterval(interval, delay / 100)
+                            }
+                        }
+                    });
+                }
+            },
+        });
+        swiper.on('slideChange', function () {
+            
+            setTimeout(() => {
+                document.querySelector('.swiper-slide-active .progress-passed').style.width = 0;
+                per = 0;
+            }, 100)
+        });
+        setTimeout(tick = setInterval(interval, delay / 100), 100)
+        
+
+        function interval() {
+            if (per < 100) {
+                if (per === 0) {
+                    document.querySelectorAll('.swiper-slide video').forEach(element => {
+                        element.pause()
+                        element.currentTime = 0;
+                    });
+                    document.querySelector('.swiper-slide-active video').play()
+                    document.querySelector('.swiper-slide-active video').setAttribute('autoplay' , true)
+                }
+                per++;
+                document.querySelector('.swiper-slide-active .progress-passed').style.width = per + '%';
+            } else if ( per === 100) {
+                swiper.slideNext()
+            }
+        }
+    </script>
+</body>
+</html>
